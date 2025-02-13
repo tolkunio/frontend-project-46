@@ -10,5 +10,8 @@ programm
     .option('-f, --format <type>', 'output format')
     .arguments('<file1path1> <filepath2>')
     .option('-V, --version','output the version number')
-    .option('-h, --help','output usage information');
-programm.parse();
+    .option('-h, --help','output usage information')
+    .action((file1,file2)=>{
+        console.log(file1,file2);
+    })
+programm.parse(process.argv);
