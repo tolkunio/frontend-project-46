@@ -1,6 +1,8 @@
 Проект **Вычислитель отличий** 
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/5ab6e04da1050a7c547d/maintainability)](https://codeclimate.com/github/tolkunio/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5ab6e04da1050a7c547d/test_coverage)](https://codeclimate.com/github/tolkunio/frontend-project-46/test_coverage)
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/tolkunio/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/tolkunio/frontend-project-46/actions)
 
