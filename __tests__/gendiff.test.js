@@ -1,13 +1,21 @@
 import { test, expect } from '@jest/globals';
-import path from 'path';
-import genDiff from "../src/index.js";
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import fs from 'fs';
+import genDiff from '../src/index.js';
 
-const getFixturesPath =(filename)=>path.resolve(process.cwd(),filename);
+const __fileName = fileURLToPath(import.meta.url);
+const __dirname = dirname(__fileName);
 
-test('should be equal to expected',()=>{
-    const expected = fs.readFileSync(getFixturesPath('__fixtures__/result.txt'),'utf-8');
-    const result=genDiff(
-        getFixturesPath('__fixtures__/file1.json'), getFixturesPath('__fixtures__/file2.json'));
-    expect(result).toBe(expected);
-})
+const getFixturesPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFile = (filename) => fs.readFileSync(getFixturesPath(filename), 'utf-8');
+
+test('should be equal to expected', () => {
+  const expected = readFile('result.txt');
+  const result = genDiff(
+    'file1.json',
+    'file2.json',
+  );
+  console.log(`expected:${expected}, resul:${result}`);
+  expect(result).toBe(expected);
+});

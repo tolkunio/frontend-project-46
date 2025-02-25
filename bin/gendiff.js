@@ -10,6 +10,7 @@ programm
   .arguments('<filepath1> <filepath2>')
   .version('1.0.0')
   .action((filepath1, filepath2) => {
-    genDiff(filepath1, filepath2);
+    const result = genDiff(filepath1, filepath2);
+    console.log(result);
   });
 programm.parse(process.argv);
