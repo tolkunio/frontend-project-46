@@ -21,8 +21,8 @@ test('should be equal string data from json file to expected', () => {
 test('should be equal string data from yml file to expected', () => {
   const expected = readFile('result.txt');
   const result = genDiff(
-      'file1.yml',
-      'file2.yml',
+    'file1.yml',
+    'file2.yml',
   );
   expect(result).toBe(expected);
 });
