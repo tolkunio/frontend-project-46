@@ -22,10 +22,10 @@ const getFileParse = (data, fileType) => {
   }
 };
 
-const parse = (file) => {
+const parser = (file) => {
   const pathFile = getFixturesPath(file);
   const data = fs.readFileSync(pathFile, 'utf-8');
   const fileType = getFileType(file);
   return getFileParse(data, fileType);
 };
-export default parse;
+export default parser;
