@@ -10,12 +10,19 @@ const __dirname = dirname(__fileName);
 const getFixturesPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturesPath(filename), 'utf-8');
 
-test('should be equal to expected', () => {
+test('should be equal string data from json file to expected', () => {
   const expected = readFile('result.txt');
   const result = genDiff(
     'file1.json',
     'file2.json',
   );
-  console.log(`expected:${expected}result:${result}`);
+  expect(result).toBe(expected);
+});
+test('should be equal string data from yml file to expected', () => {
+  const expected = readFile('result.txt');
+  const result = genDiff(
+      'file1.yml',
+      'file2.yml',
+  );
   expect(result).toBe(expected);
 });
