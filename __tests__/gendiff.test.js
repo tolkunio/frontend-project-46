@@ -16,6 +16,6 @@ test('should be equal to expected', () => {
     'file1.json',
     'file2.json',
   );
-  console.log(`expected:${expected}, resul:${result}`);
+  console.log(`expected:${expected}result:${result}`);
   expect(result).toBe(expected);
 });
