@@ -9,3 +9,6 @@
 *Шаг 4*
 
  https://asciinema.org/connect/99808a38-2010-4047-a59e-d9337e8ffac7
+*Шаг 6*
+
+ https://asciinema.org/a/0kC2cIitL1UBBwztH8iAnVAAD
