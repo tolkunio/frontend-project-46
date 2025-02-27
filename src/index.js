@@ -1,5 +1,10 @@
 import parser from './parser.js';
+const buildTree = (data1,data2) => {
 
+}
+const formatTree = (tree, format) =>{
+
+}
 const genDiff = (filepath1, filepath2) => {
   const data1 = parser(filepath1);
   const data2 = parser(filepath2);
