@@ -1,29 +1,31 @@
 import parser from './parser.js';
-const buildTree = (data1,data2) => {
+import _ from "lodash";
+import setFormatter from "./formatters/index.js";
 
+const compareData = (data1,data2) => {
+  const uniqKeys = _.union(Object.keys(data1),Object.keys(data2));
+  const sortedKeys = _.sortBy(uniqKeys);
+  return sortedKeys.map((key)=>{
+    if(!Object.hasOwn(data1,key)){
+      return {key,type:'added',value:data2[key]}
+    }
+    if(!Object.hasOwn(data2,key)){
+      return {key, type: 'deleted',value: data1[key]};
+    }
+    if(_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])){
+      return {key, type: 'nested', children:compareData(data1[key],data2[key])};
+    }
+    if(_.isEqual(data1[key],data2[key])){
+      return {key, type: 'same', value1:data1[key], value2: data2[key] };
+    }
+  })
 }
-const formatTree = (tree, format) =>{
 
-}
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2,formatter = 'stylish') => {
   const data1 = parser(filepath1);
   const data2 = parser(filepath2);
 
-  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort();
-
-  const diff = keys.map((key) => {
-    if (!Object.hasOwn(data2, key)) {
-      return `  - ${key}: ${data1[key]}`;
-    }
-    if (!Object.hasOwn(data1, key)) {
-      return `  + ${key}: ${data2[key]}`;
-    }
-    if (data1[key] !== data2[key]) {
-      return `  - ${key}: ${data1[key]}\n  + ${key}: ${data2[key]}`;
-    }
-    return `    ${key} : ${data1[key]}`;
-  });
-
-  return `{\n${diff.join('\n')}\n}`;
+  const comparedData = compareData(data1,data2);
+  return setFormatter(comparedData, formatter);
 };
 export default genDiff;
